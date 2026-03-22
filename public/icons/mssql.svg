@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 200">
+  <defs>
+    <linearGradient id="sqlRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B7001C" />
+      <stop offset="100%" stop-color="#EC5C64" />
+    </linearGradient>
+  </defs>
+  <g fill="url(#sqlRed)">
+    <path d="M13 60c9 10 41 18 66 18 23 0 53-6 72-13-7 13-26 33-42 40-29 12-63 9-82 3-7-2-9-5-14-10V60z" opacity="0.9"/>
+    <path d="M15 90c12 10 39 18 64 18 25 0 54-6 74-13-4 15-15 33-28 44-22 19-59 23-82 15-6-2-18-7-28-16V90z" opacity="0.8"/>
+    <path d="M16 126c12 9 38 17 62 18 19 1 44-3 62-9v30c-22 13-51 24-86 20-24-3-35-8-49-16v-43z" opacity="0.7"/>
+  </g>
+  <path d="M16 56c18 14 56 21 79 21 23 0 55-6 70-14" stroke="#FFD6DB" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.7" />
+  <path d="M17 100c17 12 54 19 78 18 18-1 40-6 58-14" stroke="#FFD6DB" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.6" />
+</svg>
