@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import heroImg from "./assets/hero.jpg";
 import "./App.css";
 
 type Project = {
@@ -133,28 +132,6 @@ const skillLogos: Record<string, string> = {
   Figma: "https://cdn.simpleicons.org/figma/F24E1E",
 };
 
-const skillGroups = [
-  { title: "Languages", items: ["PHP", "JavaScript", "TypeScript", "Python"] },
-  {
-    title: "Frameworks",
-    items: [
-      "Bootstrap",
-      "Tailwind CSS",
-      "React",
-      "CodeIgniter",
-      "Laravel",
-      "Node.js",
-      "Express.js",
-      "NestJS",
-    ],
-  },
-  {
-    title: "Databases",
-    items: ["MySQL", "Microsoft SQL Server", "PostgreSQL"],
-  },
-  { title: "Tools", items: ["Git", "Postman", "Docker", "Figma"] },
-];
-
 const techRow1 = [
   "PHP",
   "JavaScript",
@@ -212,30 +189,7 @@ const heroSocials = [
   { label: "Instagram", href: "https://instagram.com/devwithfin" },
 ];
 
-const heroCtas = [
-  { label: "Let's Collaborate", href: "#contact", variant: "primary" as const },
-  {
-    label: "Get Resume",
-    href: "https://drive.google.com/file/d/1TmtDCIlCaZJ4b0npzjwsdDtxiOWwye23/view?usp=drive_link",
-    variant: "ghost" as const,
-  },
-];
 
-const stackBadgeStyles: Record<string, string> = {
-  React: "bg-sky-500/10 text-sky-200 border border-sky-400/30",
-  TypeScript: "bg-blue-500/10 text-blue-200 border border-blue-400/30",
-  "Tailwind CSS": "bg-cyan-500/10 text-cyan-200 border border-cyan-400/30",
-  Supabase: "bg-emerald-500/10 text-emerald-200 border border-emerald-400/30",
-  "Next.js": "bg-white/10 text-white border border-white/20",
-  Stripe: "bg-indigo-500/10 text-indigo-200 border border-indigo-400/40",
-  "Framer Motion": "bg-pink-500/10 text-pink-200 border border-pink-400/30",
-  PostgreSQL: "bg-slate-500/10 text-slate-200 border border-slate-400/30",
-  Storybook: "bg-rose-500/10 text-rose-200 border border-rose-400/40",
-  "Radix UI": "bg-violet-500/10 text-violet-200 border border-violet-400/30",
-  Vite: "bg-amber-500/10 text-amber-200 border border-amber-400/30",
-  "Figma Tokens":
-    "bg-orange-500/10 text-orange-200 border border-orange-400/30",
-};
 
 function App() {
   const projectTrackRef = useRef<HTMLDivElement | null>(null);
