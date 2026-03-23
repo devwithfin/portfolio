@@ -54,3 +54,160 @@ body {
 .pause-on-hover:hover .animate-marquee-right {
   animation-play-state: paused;
 }
+
+@keyframes card-float-edu {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  25% {
+    transform: translate3d(0, -8px, 0) scale(1.03);
+  }
+  50% {
+    transform: translate3d(0, 4px, 0) scale(0.99);
+  }
+  75% {
+    transform: translate3d(0, -4px, 0) scale(1.015);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.float-hover-edu:hover {
+  animation: card-float-edu 1.2s ease-in-out both;
+}
+
+@keyframes card-tilt-contact {
+  0% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+  20% {
+    transform: rotate(-2deg) translate3d(-4px, -2px, 0);
+  }
+  40% {
+    transform: rotate(1.5deg) translate3d(3px, 1px, 0);
+  }
+  60% {
+    transform: rotate(-1deg) translate3d(-2px, 0, 0);
+  }
+  80% {
+    transform: rotate(0.8deg) translate3d(1px, 1px, 0);
+  }
+  100% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+}
+
+.tilt-hover-contact:hover {
+  animation: card-tilt-contact 0.9s ease-in-out both;
+}
+
+@keyframes source-btn-wiggle {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  8% {
+    transform: translate3d(2px, -1px, 0) rotate(2deg);
+  }
+  16% {
+    transform: translate3d(-3px, 1px, 0) rotate(-3deg);
+  }
+  24% {
+    transform: translate3d(3px, -1px, 0) rotate(3deg);
+  }
+  32% {
+    transform: translate3d(-2px, 1px, 0) rotate(-2deg);
+  }
+  38% {
+    transform: translate3d(1px, -0.5px, 0) rotate(1deg);
+  }
+  45%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+}
+
+.source-wiggle {
+  animation: source-btn-wiggle 2s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+
+.source-wiggle:hover {
+  animation-play-state: paused;
+  transform: translate3d(0, 0, 0) rotate(0deg);
+}
+
+.cursor-close {
+  cursor: pointer;
+}
+
+.hero-tilt-container {
+  perspective: 1600px;
+  transform-style: preserve-3d;
+}
+
+.hero-tilt-content {
+  transform-style: preserve-3d;
+}
+
+.role-roller-track {
+  display: flex;
+  flex-direction: column;
+}
+
+.scroll-section {
+  opacity: 1;
+  transform: none;
+}
+
+.scroll-anim-ready .scroll-section {
+  opacity: 0;
+  transform: var(--scroll-transform, translateY(40px) scale(0.97));
+  transition:
+    opacity 0.85s var(--scroll-timing, cubic-bezier(0.22, 1, 0.36, 1)),
+    transform 0.85s var(--scroll-timing, cubic-bezier(0.22, 1, 0.36, 1));
+  transition-delay: var(--scroll-delay, 0s);
+  will-change: opacity, transform;
+}
+
+.scroll-anim-ready .scroll-section.scroll-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-anim-ready .scroll-section.scroll-visible-instant {
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-anim-ready .scroll-section,
+  .scroll-anim-ready .scroll-section.scroll-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.scroll-anim-ready .scroll-section[data-scroll-variant~="slide-right"] {
+  --scroll-transform: translateX(-60px);
+}
+
+.scroll-anim-ready .scroll-section[data-scroll-variant~="slide-left"] {
+  --scroll-transform: translateX(60px);
+}
+
+.scroll-anim-ready .scroll-section[data-scroll-variant~="scale"] {
+  --scroll-transform: scale(0.9);
+}
+
+.scroll-anim-ready .scroll-section[data-scroll-variant~="lift"] {
+  --scroll-transform: translateY(50px) scale(0.94);
+  --scroll-timing: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.scroll-anim-ready .scroll-section[data-scroll-variant~="delay"] {
+  --scroll-delay: 0.12s;
+}
+
+.scroll-anim-ready .scroll-section[data-scroll-variant~="rotate"] {
+  --scroll-transform: translateY(30px) rotateX(8deg);
+  transform-origin: top center;
+}
