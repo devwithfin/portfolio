@@ -781,7 +781,7 @@ function App() {
           {/* Left Column: About Text */}
           <div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight text-center lg:text-left">
-              About <span className="text-[#4c7dff]">Developer</span>
+              About <span className="text-[#7f9aff]">Developer</span>
             </h2>
             <div className="mt-6 relative rounded-3xl border border-[#4c7dff]/30 bg-[#0a1029]/60 p-8 sm:p-10 shadow-lg backdrop-blur hover:border-[#4c7dff]/50 transition-colors">
               <p className="relative z-10 text-base leading-loose text-slate-300 font-medium">
@@ -834,7 +834,7 @@ function App() {
         >
           <div className="sm:hidden mb-6">
             <h2 className="text-3xl font-extrabold text-white text-center">
-              Work <span className="text-[#4c7dff]">Experience</span>
+              Work <span className="text-[#7f9aff]">Experience</span>
             </h2>
           </div>
           <h2 className="hidden sm:flex flex-wrap items-center justify-center text-center text-2xl sm:text-3xl font-semibold text-white">
@@ -919,7 +919,7 @@ function App() {
         >
           <div className="sm:hidden mb-6">
             <h2 className="text-3xl font-extrabold text-white text-center">
-              Education <span className="text-[#4c7dff]">Background</span>
+              Education <span className="text-[#7f9aff]">Background</span>
             </h2>
           </div>
           <h2 className="hidden sm:flex flex-wrap items-center justify-center text-center text-2xl sm:text-3xl font-semibold text-white">
@@ -1004,7 +1004,7 @@ function App() {
         >
           <div className="sm:hidden mb-6">
             <h2 className="text-3xl font-extrabold text-white text-center">
-              Tech <span className="text-[#4c7dff]">Stack</span>
+              Tech <span className="text-[#7f9aff]">Stack</span>
             </h2>
           </div>
           <h2 className="hidden sm:flex flex-wrap items-center justify-center text-center text-2xl sm:text-3xl font-semibold text-white">
@@ -1082,7 +1082,7 @@ function App() {
         >
           <div className="sm:hidden mb-6">
             <h2 className="text-3xl font-extrabold text-white text-center">
-              Project <span className="text-[#4c7dff]">Portfolio</span>
+              Project <span className="text-[#7f9aff]">Portfolio</span>
             </h2>
           </div>
           <div className="hidden sm:flex items-center justify-center text-center">
@@ -1295,7 +1295,7 @@ function App() {
         >
           <div className="sm:hidden mb-6">
             <h2 className="text-3xl font-extrabold text-white text-center">
-              Let&apos;s <span className="text-[#4c7dff]">Connect</span>
+              Let&apos;s <span className="text-[#7f9aff]">Connect</span>
             </h2>
           </div>
           <div className="hidden sm:flex items-center justify-center text-center">
