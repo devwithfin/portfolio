@@ -597,7 +597,7 @@ function App() {
         <header className="relative py-6 sm:py-10">
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:items-center">
             <div className="space-y-10 order-2 lg:order-1">
-              <div className="space-y-6">
+              <div className="space-y-6 text-center sm:text-left">
                 <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black leading-tight sm:leading-[1.1] tracking-tight text-white">
                   Jr. <br />
                   <span className="inline-flex h-12 sm:h-16 lg:h-[64px] overflow-hidden text-[#7f9aff]">
@@ -611,7 +611,7 @@ function App() {
                   <span className="text-white/40">Developer</span>
                 </h1>
 
-                <p className="text-base sm:text-lg text-slate-300 max-w-lg leading-relaxed">
+                <p className="text-base sm:text-lg text-slate-300 max-w-lg leading-relaxed mx-auto sm:mx-0">
                   I&apos;m{" "}
                   <span className="text-white font-bold">
                     Alfiansyah Cahyo Wicaksono
@@ -630,7 +630,7 @@ function App() {
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-4 pt-4">
+              <div className="flex flex-wrap gap-4 pt-4 justify-center sm:justify-start">
                 <a
                   href="https://wa.me/6285819727856"
                   target="_blank"
