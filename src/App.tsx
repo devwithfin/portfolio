@@ -236,6 +236,7 @@ function App() {
     active: false,
   });
   const projectTrackRef = useRef<HTMLDivElement | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const [statValues, setStatValues] = useState(() => heroStats.map(() => 0));
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [heroCardEffect, setHeroCardEffect] = useState<HeroCardEffect>({
@@ -578,6 +579,17 @@ function App() {
       };
     };
 
+    if (isMobile) {
+      heroTargetRef.current = {
+        rotateX: 0,
+        rotateY: 0,
+        glowX: 50,
+        glowY: 50,
+        active: false,
+      };
+      return undefined;
+    }
+
     window.addEventListener("pointermove", handlePointerMove, { passive: true });
     window.addEventListener("pointerleave", handlePointerLeave);
 
@@ -585,7 +597,52 @@ function App() {
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("pointerleave", handlePointerLeave);
     };
-  }, [heroActiveRange, heroReleaseRange]);
+  }, [heroActiveRange, heroReleaseRange, isMobile]);
+
+  useEffect(() => {
+    const updateIsMobile = () => {
+      setIsMobile(window.matchMedia("(max-width: 640px)").matches);
+    };
+    updateIsMobile();
+    window.addEventListener("resize", updateIsMobile);
+    return () => window.removeEventListener("resize", updateIsMobile);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobile) return undefined;
+
+    let frame: number;
+    const startTime = performance.now();
+
+    const loop = (time: number) => {
+      const elapsed = (time - startTime) / 1000;
+      const wave1 = Math.sin(elapsed * 2.3);
+      const wave2 = Math.cos(elapsed * 1.8);
+      const wave3 = Math.sin(elapsed * 1.4);
+
+      heroTargetRef.current = {
+        rotateX: wave1 * 18 + wave3 * 8,
+        rotateY: wave2 * 24 + wave3 * 6,
+        glowX: ((wave2 + 1) / 2) * 100,
+        glowY: ((wave1 + 1) / 2) * 100,
+        active: true,
+      };
+
+      frame = requestAnimationFrame(loop);
+    };
+
+    frame = requestAnimationFrame(loop);
+    return () => {
+      cancelAnimationFrame(frame);
+      heroTargetRef.current = {
+        rotateX: 0,
+        rotateY: 0,
+        glowX: 50,
+        glowY: 50,
+        active: false,
+      };
+    };
+  }, [isMobile]);
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-gradient-to-br from-[#03050f] via-[#08112a] via-[#101e44] to-[#152270] text-slate-100 antialiased font-sans selection:bg-[#4c7dff]/40">
