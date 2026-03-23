@@ -438,9 +438,6 @@ function App() {
     [openProjectDetail],
   );
 
-  const primaryFocusDescription =
-    selectedProject?.description.split(".")[0]?.trim() ?? "";
-
   useEffect(() => {
     let animationFrame: number;
 
