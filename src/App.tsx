@@ -6,7 +6,9 @@ type Project = {
   description: string;
   stack: string[];
   link: string;
-  previewGradient: string;
+  sourceLink?: string;
+  previewGradient?: string;
+  previewImage?: string;
 };
 
 type Experience = {
@@ -24,6 +26,8 @@ const projects: Project[] = [
     stack: ["CodeIgniter", "MySQL", "Bootstrap"],
     link: "#",
     previewGradient: "from-[#1c3f8c] via-[#1a2b63] to-[#101638]",
+    previewImage: "projects/employee-management-system.png",
+    sourceLink: "https://github.com/devwithfin/aplikasiperpustatakaan",
   },
   {
     title: "Learning Management System",
@@ -32,6 +36,7 @@ const projects: Project[] = [
     stack: ["React", "Express.js", "Node.js", "MySQL", "Material UI"],
     link: "#",
     previewGradient: "from-[#1b357a] via-[#18255a] to-[#0d1235]",
+    previewImage: "projects/learning-management-system.png",
   },
   {
     title: "HRIS & Payroll",
@@ -40,6 +45,8 @@ const projects: Project[] = [
     stack: ["React", "Express.js", "Node.js", "Tailwind CSS"],
     link: "#",
     previewGradient: "from-[#203c88] via-[#1a2c64] to-[#0f143a]",
+    previewImage: "projects/hris-payroll.png",
+    sourceLink: "https://github.com/devwithfin/payroll",
   },
   {
     title: "Employee Management System",
@@ -48,6 +55,7 @@ const projects: Project[] = [
     stack: ["Laravel", "Node.js", "PostgreSQL", "Bootstrap"],
     link: "#",
     previewGradient: "from-[#1a3676] via-[#142350] to-[#0d1333]",
+    previewImage: "projects/employee-management-system.png",
   },
   {
     title: "Customer Relationship Management",
@@ -56,6 +64,7 @@ const projects: Project[] = [
     stack: ["React", "NestJS", "Node.js", "PostgreSQL"],
     link: "#",
     previewGradient: "from-[#263a8f] via-[#1b2863] to-[#10163d]",
+    previewImage: "projects/customer-relationship-management.png",
   },
 ];
 
@@ -92,6 +101,7 @@ const experiences: Experience[] = [
     ],
   },
 ];
+
 
 const education = [
   {
@@ -333,7 +343,9 @@ function App() {
 
               <div className="flex flex-wrap gap-4 pt-4">
                 <a
-                  href="#contact"
+                  href="https://wa.me/6285819727856"
+                  target="_blank"
+                  rel="noreferrer"
                   className="px-8 py-4 bg-[#4c7dff] hover:bg-[#6b92ff] text-white rounded-2xl font-bold flex items-center gap-2 transition shadow-lg shadow-[#060d24]/70 active:scale-[0.98]"
                 >
                   Let's collaborate
@@ -766,12 +778,45 @@ function App() {
                 {projects.map((project) => (
                   <article
                     key={project.title}
-                    className="snap-start shrink-0 w-[85vw] sm:w-[400px] lg:w-[480px] flex flex-col rounded-3xl border border-[#2f4184]/50 bg-[#0c1538]/80 text-slate-100 shadow overflow-hidden transition hover:border-[#4c7dff]/70"
+                    className="group snap-start shrink-0 w-[85vw] sm:w-[400px] lg:w-[480px] flex flex-col rounded-3xl border border-[#2f4184]/50 bg-[#0c1538]/80 text-slate-100 shadow overflow-hidden transition hover:border-[#4c7dff]/70"
                   >
                     <div
-                      aria-hidden
-                      className={`aspect-[16/9] w-full shrink-0 bg-gradient-to-br ${project.previewGradient}`}
-                    />
+                      className={`relative w-full shrink-0 overflow-hidden rounded-t-xl bg-gradient-to-br ${project.previewGradient ?? ""}`}
+                    >
+                      {project.previewImage ? (
+                        <>
+                          <img
+                            src={project.previewImage}
+                            alt=""
+                            aria-hidden
+                            className="absolute inset-0 h-full w-full scale-125 object-cover opacity-70 blur-[60px] transition duration-300 group-hover:opacity-40"
+                          />
+                          <span
+                            className="absolute inset-0 bg-gradient-to-b from-[#02050f] via-[#050c24] to-transparent opacity-90 transition duration-300 group-hover:opacity-40"
+                            aria-hidden
+                          />
+                          <span
+                            className="absolute inset-0 bg-[#030816]/80 transition duration-300 group-hover:bg-[#030816]/40"
+                            aria-hidden
+                          />
+                          <img
+                            src={project.previewImage}
+                            alt={`${project.title} preview`}
+                            loading="lazy"
+                            className="relative block w-full object-cover opacity-90 transition duration-300 group-hover:opacity-100"
+                          />
+                          <span
+                            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/40 transition duration-300 group-hover:from-black/40 group-hover:via-transparent group-hover:to-transparent"
+                            aria-hidden
+                          />
+                        </>
+                      ) : (
+                        <div
+                          aria-hidden
+                          className={`h-full w-full bg-gradient-to-br ${project.previewGradient ?? ""}`}
+                        />
+                      )}
+                    </div>
                     <div className="flex h-full flex-col gap-4 p-6">
                       <div className="space-y-2">
                         <h3 className="text-xl font-semibold text-white line-clamp-2 min-h-[3.5rem]">
@@ -797,43 +842,69 @@ function App() {
                         </div>
                       </div>
                       <div className="mt-auto grid w-full grid-cols-1 gap-3 sm:grid-cols-2">
-                        <a
-                          href={project.link}
-                          className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#4c7dff]/40 px-4 py-2 text-center text-sm font-semibold text-[#d7e0ff] transition hover:border-[#6a93ff]/70"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <circle cx="12" cy="12" r="10" />
-                            <line x1="2" y1="12" x2="22" y2="12" />
-                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                          </svg>
-                          Live Demo
-                        </a>
-                        <a
-                          href={project.link}
-                          className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#4c7dff]/40 bg-[#4c7dff]/10 px-4 py-2 text-center text-sm font-semibold text-[#d7e0ff] transition hover:bg-[#6a93ff]/20"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            stroke="none"
-                          >
-                            <path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.22.7-3.9-1.4-3.9-1.4-.53-1.33-1.3-1.69-1.3-1.69-1.06-.73.08-.72.08-.72 1.17.08 1.78 1.21 1.78 1.21 1.04 1.78 2.73 1.27 3.4.97.1-.76.4-1.27.72-1.56-2.57-.3-5.27-1.29-5.27-5.74A4.5 4.5 0 0 1 5.5 8.5a4.18 4.18 0 0 1 .11-3s.97-.31 3.2 1.2a10.9 10.9 0 0 1 5.78 0c2.22-1.51 3.2-1.2 3.2-1.2a4.18 4.18 0 0 1 .12 3 4.5 4.5 0 0 1 1.2 2.98c0 4.47-2.7 5.43-5.28 5.72.41.35.77 1.05.77 2.12v3.14c0 .31.2.67.8.56A11.5 11.5 0 0 0 12 .5" />
-                          </svg>
-                          Source Code
-                        </a>
+                        {["Learning Management System", "Employee Management System", "Customer Relationship Management"].includes(project.title) ? (
+                          <div className="col-span-1 sm:col-span-2">
+                            <span className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#4c7dff]/40 bg-[#4c7dff]/10 px-4 py-2 text-center text-sm font-semibold text-[#d7e0ff]">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <path d="M21 6V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v1" />
+                                <path d="M3 10h18" />
+                                <path d="M5 10v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V10" />
+                                <path d="M10 5h4" />
+                              </svg>
+                              Internal Company Project
+                            </span>
+                          </div>
+                        ) : (
+                          <>
+                            <a
+                              href={project.link}
+                              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#4c7dff]/40 px-4 py-2 text-center text-sm font-semibold text-[#d7e0ff] transition hover:border-[#6a93ff]/70"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="2" y1="12" x2="22" y2="12" />
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                              </svg>
+                              Live Demo
+                            </a>
+                            <a
+                              href={project.sourceLink ?? project.link}
+                              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#4c7dff]/40 bg-[#4c7dff]/10 px-4 py-2 text-center text-sm font-semibold text-[#d7e0ff] transition hover:bg-[#6a93ff]/20"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                stroke="none"
+                              >
+                                <path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.22.7-3.9-1.4-3.9-1.4-.53-1.33-1.3-1.69-1.3-1.69-1.06-.73.08-.72.08-.72 1.17.08 1.78 1.21 1.78 1.21 1.04 1.78 2.73 1.27 3.4.97.1-.76.4-1.27.72-1.56-2.57-.3-5.27-1.29-5.27-5.74A4.5 4.5 0 0 1 5.5 8.5a4.18 4.18 0 0 1 .11-3s.97-.31 3.2 1.2a10.9 10.9 0 0 1 5.78 0c2.22-1.51 3.2-1.2 3.2-1.2a4.18 4.18 0 0 1 .12 3 4.5 4.5 0 0 1 1.2 2.98c0 4.47-2.7 5.43-5.28 5.72.41.35.77 1.05.77 2.12v3.14c0 .31.2.67.8.56A11.5 11.5 0 0 0 12 .5" />
+                              </svg>
+                              Source Code
+                            </a>
+                          </>
+                        )}
                       </div>
                     </div>
                   </article>
@@ -957,7 +1028,12 @@ function App() {
               </div>
 
               {/* Phone Card */}
-              <div className="relative rounded-3xl bg-gradient-to-r from-[#4c7dff] via-[#3a52c9] to-[#1f2c72] p-[1px] shadow-[0_25px_70px_rgba(4,10,35,0.7)] transition-transform duration-500 hover:-translate-y-1 hover:shadow-[0_25px_80px_rgba(76,125,255,0.2)]">
+              <a
+                href="https://wa.me/6285819727856"
+                target="_blank"
+                rel="noreferrer"
+                className="relative rounded-3xl bg-gradient-to-r from-[#4c7dff] via-[#3a52c9] to-[#1f2c72] p-[1px] shadow-[0_25px_70px_rgba(4,10,35,0.7)] transition-transform duration-500 hover:-translate-y-1 hover:shadow-[0_25px_80px_rgba(76,125,255,0.2)]"
+              >
                 <div className="flex h-full items-center gap-5 rounded-3xl bg-[#0f1a40]/95 p-5 transition-colors duration-300">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#4c7dff]/10 text-[#6a93ff]">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -967,7 +1043,7 @@ function App() {
                     <p className="mt-1 text-sm font-semibold text-white">+62 858 1972 7856</p>
                   </div>
                 </div>
-              </div>
+              </a>
 
               {/* Location Card */}
               <div className="relative rounded-3xl bg-gradient-to-r from-[#4c7dff] via-[#3a52c9] to-[#1f2c72] p-[1px] shadow-[0_25px_70px_rgba(4,10,35,0.7)] transition-transform duration-500 hover:-translate-y-1 hover:shadow-[0_25px_80px_rgba(76,125,255,0.2)]">
