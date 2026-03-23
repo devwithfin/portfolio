@@ -64,7 +64,7 @@ const projects: Project[] = [
   {
     title: "Employee Management System",
     description:
-      "Built a full-stack Employee Management System using Laravel and MySQL to centralize employee data, service requests, and approval-based workflows—requisitions, business trips, purchases, claims, and security incidents. Supports role-based access, configurable approval chains, facility/asset tracking, and audit logging for HR, finance, facilities, and employees.",
+      "Built a full-stack Employee Management System using Laravel and MySQL to centralize employee data, service requests, and approval-based workflows-requisitions, business trips, purchases, claims, and security incidents. Supports role-based access, configurable approval chains, facility/asset tracking, and audit logging for HR, finance, facilities, and employees.",
     stack: ["Laravel", "Node.js", "PostgreSQL", "Bootstrap"],
     link: "#",
     previewGradient: "from-[#1a3676] via-[#142350] to-[#0d1333]",
@@ -215,7 +215,6 @@ const heroSocials = [
 ];
 
 const heroRoles = ["Fullstack", "Frontend", "Backend"];
-const heroRolesLoop = [...heroRoles, heroRoles[0]];
 
 
 
@@ -244,11 +243,7 @@ function App() {
   const heroPassiveSpeed = 0.07;
   const scrollDirectionRef = useRef<"down" | "up">("down");
   const [heroRoleIndex, setHeroRoleIndex] = useState(0);
-  const [heroRoleAnimated, setHeroRoleAnimated] = useState(true);
-  const roleTrackStyle = {
-    transform: `translateY(-${heroRoleIndex * 100}%)`,
-    transition: heroRoleAnimated ? "transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)" : "none",
-  };
+  const currentHeroRole = heroRoles[heroRoleIndex] ?? heroRoles[0];
   const [contactName, setContactName] = useState("");
   const [contactPhone, setContactPhone] = useState("");
   const [contactMessage, setContactMessage] = useState("");
@@ -286,24 +281,12 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (heroRoleIndex === heroRoles.length) return undefined;
-    const timer = setTimeout(() => {
-      setHeroRoleAnimated(true);
-      setHeroRoleIndex((prev) => prev + 1);
+    if (!heroRoles.length) return undefined;
+    const timer = setInterval(() => {
+      setHeroRoleIndex((prev) => (prev + 1) % heroRoles.length);
     }, 2200);
-    return () => clearTimeout(timer);
-  }, [heroRoleIndex]);
-
-  useEffect(() => {
-    if (heroRoleIndex === heroRoles.length) {
-      const timeout = setTimeout(() => {
-        setHeroRoleAnimated(false);
-        setHeroRoleIndex(0);
-      }, 600);
-      return () => clearTimeout(timeout);
-    }
-    return undefined;
-  }, [heroRoleIndex]);
+    return () => clearInterval(timer);
+  }, []);
 
 
   useEffect(() => {
@@ -552,7 +535,7 @@ function App() {
   }, [heroActiveRange, heroReleaseRange]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#03050f] via-[#08112a] via-[#101e44] to-[#152270] text-slate-100 antialiased font-sans selection:bg-[#4c7dff]/40">
+    <div className="min-h-screen overflow-x-hidden bg-gradient-to-br from-[#03050f] via-[#08112a] via-[#101e44] to-[#152270] text-slate-100 antialiased font-sans selection:bg-[#4c7dff]/40">
       {/* Background Glows */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#1f2c6d]/30 blur-[140px] rounded-full" />
@@ -610,40 +593,36 @@ function App() {
         ))}
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 xl:px-12 pb-10 pt-10">
-        <header className="relative py-10">
-          <div className="grid gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div className="space-y-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 xl:px-12 pb-10 pt-8 sm:pt-10">
+        <header className="relative py-6 sm:py-10">
+          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:items-center">
+            <div className="space-y-10 order-2 lg:order-1">
               <div className="space-y-6">
-                <h1 className="text-6xl font-black leading-[1.1] tracking-tight text-white lg:text-7xl">
+                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black leading-tight sm:leading-[1.1] tracking-tight text-white">
                   Jr. <br />
-                  <span className="inline-flex h-[64px] overflow-hidden text-[#7f9aff]">
-                    <span className="role-roller-track" style={roleTrackStyle}>
-                      {heroRolesLoop.map((role, idx) => (
-                        <span key={`${role}-${idx}`} className="flex h-[64px] items-center">
-                          {role}
-                        </span>
-                      ))}
-                    </span>
+                  <span className="inline-flex h-12 sm:h-16 lg:h-[64px] overflow-hidden text-[#7f9aff]">
+                    {[heroRoleIndex].map((key) => (
+                      <span key={`hero-title-${key}`} className="role-roller-item">
+                        {currentHeroRole}
+                      </span>
+                    ))}
                   </span>
                   <br />
                   <span className="text-white/40">Developer</span>
                 </h1>
 
-                <p className="text-xl text-slate-300 max-w-lg leading-relaxed">
+                <p className="text-base sm:text-lg text-slate-300 max-w-lg leading-relaxed">
                   I&apos;m{" "}
                   <span className="text-white font-bold">
                     Alfiansyah Cahyo Wicaksono
                   </span>
                   , a{" "}
-                  <span className="inline-flex h-[30px] overflow-hidden text-[#7f9aff] font-bold align-baseline">
-                    <span className="role-roller-track" style={roleTrackStyle}>
-                      {heroRolesLoop.map((role, idx) => (
-                        <span key={`hero-inline-${role}-${idx}`} className="flex h-[30px] items-center">
-                          {role}
-                        </span>
-                      ))}
-                    </span>
+                  <span className="inline-flex h-7 sm:h-9 overflow-hidden text-[#7f9aff] font-bold items-center">
+                    {[heroRoleIndex].map((key) => (
+                      <span key={`hero-inline-${key}`} className="role-roller-item">
+                        {currentHeroRole}
+                      </span>
+                    ))}
                   </span>{" "}
                   Developer{" "}
                   focused on building reliable platforms and expressive UI's for
@@ -656,7 +635,7 @@ function App() {
                   href="https://wa.me/6285819727856"
                   target="_blank"
                   rel="noreferrer"
-                  className="px-8 py-4 bg-[#4c7dff] hover:bg-[#6b92ff] text-white rounded-2xl font-bold flex items-center gap-2 transition shadow-lg shadow-[#060d24]/70 active:scale-[0.98]"
+                  className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-2xl border-0 px-8 py-4 bg-[#4c7dff] hover:bg-[#6b92ff] text-white font-bold transition shadow-lg shadow-[#060d24]/70 active:scale-[0.98]"
                 >
                   Let's collaborate
                   <svg
@@ -679,7 +658,7 @@ function App() {
                 <a
                   href="/doc/cv_alfiansyah_cahyo_wicaksono.pdf"
                   download
-                  className="px-8 py-4 border border-[#4c7dff]/40 text-[#cbd6ff] rounded-2xl font-bold flex items-center gap-2 transition hover:border-[#6b92ff]/70 active:scale-[0.98]"
+                  className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-2xl border border-[#4c7dff]/40 px-8 py-4 text-[#cbd6ff] font-bold transition hover:border-[#6b92ff]/70 active:scale-[0.98]"
                 >
                   Get resume
                   <svg
@@ -701,7 +680,7 @@ function App() {
               </div>
             </div>
 
-            <div className="hero-tilt-wrapper relative w-full lg:max-w-[640px]">
+            <div className="hero-tilt-wrapper relative w-full lg:max-w-[640px] order-1 lg:order-2">
               <div className="hero-tilt-container relative">
                 <div
                   className="relative hero-tilt-content bg-[#0c1538] rounded-[32px] overflow-hidden"
@@ -733,16 +712,16 @@ function App() {
                     </div>
                   </div>
                   {/* Editor Body */}
-                  <div className="p-12 font-mono text-[16px] leading-relaxed bg-[#0A0505]/90">
-                    <div className="flex gap-8">
-                      <div className="text-slate-600 select-none text-right text-[14px]">
+                  <div className="p-6 sm:p-8 lg:p-12 font-mono text-[15px] sm:text-[16px] leading-relaxed bg-[#0A0505]/90">
+                    <div className="flex gap-4 sm:gap-8 items-start">
+                      <div className="text-slate-600 select-none text-right text-[12px] sm:text-[14px]">
                         {Array.from({ length: 11 }, (_, i) =>
                           String(i + 1).padStart(2, "0"),
                         ).map((n) => (
                           <div key={n}>{n}</div>
                         ))}
                       </div>
-                      <div className="text-slate-300">
+                      <div className="text-slate-300 text-sm sm:text-base">
                         <div>
                           <span className="text-[#7f9aff]">const</span>{" "}
                           <span className="text-[#86c5ff]">developer</span> =
@@ -797,11 +776,11 @@ function App() {
           id="about"
           data-scroll-animate
           data-scroll-variant="slide-right"
-          className="scroll-section mt-20 grid gap-8 lg:grid-cols-[1.3fr_0.7fr]"
+          className="scroll-section mt-14 sm:mt-20 grid gap-8 lg:grid-cols-[1.3fr_0.7fr]"
         >
           {/* Left Column: About Text */}
           <div>
-            <h2 className="text-4xl font-extrabold text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight text-center lg:text-left">
               About <span className="text-[#4c7dff]">Developer</span>
             </h2>
             <div className="mt-6 relative rounded-3xl border border-[#4c7dff]/30 bg-[#0a1029]/60 p-8 sm:p-10 shadow-lg backdrop-blur hover:border-[#4c7dff]/50 transition-colors">
@@ -851,37 +830,39 @@ function App() {
           id="experience"
           data-scroll-animate
           data-scroll-variant="slide-left"
-          className="scroll-section mt-16 p-10"
+          className="scroll-section mt-16 px-4 py-10 sm:p-10"
         >
-          <h2 className="flex flex-wrap items-center justify-center text-center text-3xl font-semibold text-white">
+          <div className="sm:hidden mb-6">
+            <h2 className="text-3xl font-extrabold text-white text-center">
+              Work <span className="text-[#4c7dff]">Experience</span>
+            </h2>
+          </div>
+          <h2 className="hidden sm:flex flex-wrap items-center justify-center text-center text-2xl sm:text-3xl font-semibold text-white">
             <span className="hidden h-px w-16 bg-[#6b8dff]/40 sm:inline-block" />
             <span className="inline-flex items-center gap-3 rounded-full border border-[#4c7dff]/60 bg-[#0A0505] px-8 py-3 text-2xl font-semibold text-white shadow-[0_0_25px_rgba(76,125,255,0.35)]">
               Work Experience
             </span>
             <span className="hidden h-px w-16 bg-[#6b8dff]/40 sm:inline-block" />
           </h2>
-          <div className="relative mt-12">
+          <div className="relative mt-8 sm:mt-12">
             <span className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-1 -translate-x-1/2 rounded-full bg-gradient-to-b from-[#4c7dff] via-[#243788]/60 to-transparent md:block" />
-            <div className="space-y-14">
+            <div className="space-y-10 sm:space-y-14">
               {experiences.map((job, index) => {
                 const alignLeft = index % 2 === 0;
                 const card = (
                   <div className="w-full md:max-w-md group">
                     <div className="relative float-hover-edu rounded-3xl bg-gradient-to-r from-[#4c7dff] via-[#3a52c9] to-[#1f2c72] p-[1px] shadow-[0_25px_70px_rgba(5,12,40,0.65)] transition hover:shadow-[0_25px_80px_rgba(76,125,255,0.35)]">
                       <div className="rounded-3xl bg-[#0f1a40]/95 p-6 transition-colors duration-300 group-hover:bg-[#131f4f]">
-                        <div className="flex flex-col gap-2">
-                          <div>
-                            <p className="text-lg font-semibold text-white">
-                              {job.title}
-                            </p>
-                            <p className="text-sm text-[#aebdff]">
-                              {job.company}
-                            </p>
-                          </div>
-                          <div className="inline-flex items-center gap-2 rounded-full border border-[#4c7dff]/40 bg-[#0A0505] px-4 py-1 text-sm font-semibold text-[#e4dafc] md:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        <div className="flex flex-col gap-1">
+                          <p className="text-lg font-semibold text-white">
+                            {job.title}
+                          </p>
+                          <p className="text-sm text-[#aebdff]">
+                            {job.company}
+                          </p>
+                          <p className="text-sm text-[#aebdff] md:hidden">
                             {job.period}
-                          </div>
+                          </p>
                         </div>
                         <p className="mt-5 text-sm leading-relaxed text-slate-100">
                           {job.bullets.join(" ")}
@@ -934,40 +915,42 @@ function App() {
           id="education"
           data-scroll-animate
           data-scroll-variant="scale"
-          className="scroll-section mt-12 p-10"
+          className="scroll-section mt-12 px-4 py-10 sm:p-10"
         >
-          <h2 className="flex flex-wrap items-center justify-center text-center text-3xl font-semibold text-white">
+          <div className="sm:hidden mb-6">
+            <h2 className="text-3xl font-extrabold text-white text-center">
+              Education <span className="text-[#4c7dff]">Background</span>
+            </h2>
+          </div>
+          <h2 className="hidden sm:flex flex-wrap items-center justify-center text-center text-2xl sm:text-3xl font-semibold text-white">
             <span className="hidden h-px w-16 bg-[#6b8dff]/40 sm:inline-block" />
             <span className="inline-flex items-center gap-3 rounded-full border border-[#4c7dff]/60 bg-[#0A0505] px-8 py-3 text-2xl font-semibold text-white shadow-[0_0_25px_rgba(76,125,255,0.35)]">
               Education Background
             </span>
             <span className="hidden h-px w-16 bg-[#6b8dff]/40 sm:inline-block" />
           </h2>
-          <div className="relative mt-12">
+          <div className="relative mt-8 sm:mt-12">
             <span className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-1 -translate-x-1/2 rounded-full bg-gradient-to-b from-[#4c7dff] via-[#243788]/60 to-transparent md:block" />
-            <div className="space-y-14">
+            <div className="space-y-10 sm:space-y-14">
               {education.map((item, index) => {
                 const alignLeft = index % 2 === 0;
                 const card = (
                   <div className="w-full md:max-w-md group">
                     <div className="relative float-hover-edu rounded-3xl bg-gradient-to-r from-[#4c7dff] via-[#3a52c9] to-[#1f2c72] p-[1px] shadow-[0_25px_70px_rgba(5,12,40,0.65)] transition hover:shadow-[0_25px_80px_rgba(76,125,255,0.35)]">
                       <div className="rounded-3xl bg-[#0f1a40]/95 p-6 transition-colors duration-300 group-hover:bg-[#131f4f]">
-                        <div className="flex flex-col gap-2">
-                          <div>
-                            <p className="text-lg font-semibold text-white">
-                              {item.program}
-                            </p>
-                            <p className="text-sm text-[#aebdff]">
-                              {item.level}
-                            </p>
-                            <p className="text-sm text-[#7f9aff]">
-                              {item.school}
-                            </p>
-                          </div>
-                          <div className="inline-flex items-center gap-2 rounded-full border border-[#4c7dff]/40 bg-[#0A0505] px-4 py-1 text-sm font-semibold text-[#e4dafc] md:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        <div className="flex flex-col gap-1">
+                          <p className="text-lg font-semibold text-white">
+                            {item.program}
+                          </p>
+                          <p className="text-sm text-[#aebdff]">
+                            {item.level}
+                          </p>
+                          <p className="text-sm text-[#7f9aff]">
+                            {item.school}
+                          </p>
+                          <p className="text-sm text-[#aebdff] md:hidden">
                             {item.period}
-                          </div>
+                          </p>
                         </div>
                         <p className="text-sm text-[#d5deff]">
                           {item.detailLine}
@@ -1017,9 +1000,14 @@ function App() {
         <section
           data-scroll-animate
           data-scroll-variant="lift"
-          className="scroll-section mt-16 space-y-10 overflow-hidden"
+          className="scroll-section mt-12 sm:mt-16 space-y-10 overflow-hidden"
         >
-          <h2 className="flex flex-wrap items-center justify-center text-center text-3xl font-semibold text-white">
+          <div className="sm:hidden mb-6">
+            <h2 className="text-3xl font-extrabold text-white text-center">
+              Tech <span className="text-[#4c7dff]">Stack</span>
+            </h2>
+          </div>
+          <h2 className="hidden sm:flex flex-wrap items-center justify-center text-center text-2xl sm:text-3xl font-semibold text-white">
             <span className="hidden h-px w-16 bg-[#6b8dff]/40 sm:inline-block" />
             <span className="inline-flex items-center gap-3 rounded-full border border-[#4c7dff]/60 bg-[#0A0505] px-10 py-3 text-2xl font-semibold text-white shadow-[0_0_25px_rgba(76,125,255,0.35)]">
               Tech Stack
@@ -1027,9 +1015,9 @@ function App() {
             <span className="hidden h-px w-16 bg-[#6b8dff]/40 sm:inline-block" />
           </h2>
 
-          <div className="space-y-6 pause-on-hover px-4">
+          <div className="space-y-6 pause-on-hover px-2 sm:px-4">
             {/* Row 1: Right to Left */}
-            <div className="flex w-full overflow-x-hidden overflow-y-visible py-3">
+            <div className="flex w-full overflow-x-hidden overflow-y-visible py-2 sm:py-3">
               <div className="animate-marquee-left flex gap-6 pr-6">
                 {[...techRow1, ...techRow1].map((skill, idx) => (
                   <div
@@ -1057,7 +1045,7 @@ function App() {
             </div>
 
             {/* Row 2: Left to Right */}
-            <div className="flex w-full overflow-x-hidden overflow-y-visible py-3">
+            <div className="flex w-full overflow-x-hidden overflow-y-visible py-2 sm:py-3">
               <div className="animate-marquee-right flex gap-6 pr-6">
                 {[...techRow2, ...techRow2].map((skill, idx) => (
                   <div
@@ -1090,9 +1078,14 @@ function App() {
           id="projects"
           data-scroll-animate
           data-scroll-variant="rotate"
-          className="scroll-section mt-16 space-y-10"
+          className="scroll-section mt-12 sm:mt-16 space-y-10"
         >
-          <div className="flex items-center justify-center text-center">
+          <div className="sm:hidden mb-6">
+            <h2 className="text-3xl font-extrabold text-white text-center">
+              Project <span className="text-[#4c7dff]">Portfolio</span>
+            </h2>
+          </div>
+          <div className="hidden sm:flex items-center justify-center text-center">
             <span className="hidden h-px w-16 bg-[#6b8dff]/40 sm:inline-block" />
             <span className="inline-flex items-center gap-3 rounded-full border border-[#4c7dff]/60 bg-[#0A0505] px-10 py-3 text-2xl font-semibold text-white shadow-[0_0_25px_rgba(76,125,255,0.35)]">
               Projects Portfolio
@@ -1100,7 +1093,7 @@ function App() {
             <span className="hidden h-px w-16 bg-[#6b8dff]/40 sm:inline-block" />
           </div>
 
-          <div className="mt-8 flex w-full items-center gap-4">
+          <div className="mt-8 flex w-full items-center gap-2 sm:gap-4">
             <button
               onClick={() => scrollProjects("left")}
               className="hidden h-12 w-12 shrink-0 rounded-full bg-[#4c7dff] text-white shadow-lg transition hover:bg-[#6a93ff] md:grid md:place-items-center"
@@ -1298,21 +1291,26 @@ function App() {
           id="contact"
           data-scroll-animate
           data-scroll-variant="slide-right delay"
-          className="scroll-section mt-16 p-6 sm:p-10"
+          className="scroll-section mt-16 px-4 py-10 sm:p-10"
         >
-          <div className="flex items-center justify-center text-center">
+          <div className="sm:hidden mb-6">
+            <h2 className="text-3xl font-extrabold text-white text-center">
+              Let&apos;s <span className="text-[#4c7dff]">Connect</span>
+            </h2>
+          </div>
+          <div className="hidden sm:flex items-center justify-center text-center">
             <span className="hidden h-px w-16 bg-[#6b8dff]/40 sm:inline-block" />
             <span className="inline-flex items-center gap-3 rounded-full border border-[#4c7dff]/60 bg-[#0A0505] px-10 py-3 text-2xl font-semibold text-white shadow-[0_0_25px_rgba(76,125,255,0.35)]">
-              Let's Connect
+              Let&apos;s Connect
             </span>
             <span className="hidden h-px w-16 bg-[#6b8dff]/40 sm:inline-block" />
           </div>
 
-          <div className="mt-12 grid gap-8 lg:grid-cols-[1.3fr_0.7fr]">
+          <div className="mt-8 sm:mt-12 grid gap-6 sm:gap-8 lg:grid-cols-[1.3fr_0.7fr]">
           {/* Left Column: Form */}
           <div className="relative rounded-3xl bg-gradient-to-r from-[#4c7dff] via-[#3a52c9] to-[#1f2c72] p-[1px] shadow-[0_25px_70px_rgba(4,10,35,0.7)] transition-shadow duration-500 hover:shadow-[0_25px_80px_rgba(76,125,255,0.2)] h-fit">
-            <div className="rounded-3xl bg-gradient-to-br from-[#111b3f] via-[#0d1435] to-[#070c1f] p-8 sm:p-10">
-              <h2 className="text-3xl font-bold text-white tracking-tight">Send a Message</h2>
+            <div className="rounded-3xl bg-gradient-to-br from-[#111b3f] via-[#0d1435] to-[#070c1f] p-6 sm:p-10">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Send a Message</h2>
           
             <form className="mt-10 space-y-6" onSubmit={handleContactSubmit}>
               <div className="space-y-3">
@@ -1377,7 +1375,7 @@ function App() {
           {/* Right Column: Direct Contact */}
           <div className="flex flex-col justify-center space-y-8 lg:pl-6">
             <div>
-              <h3 className="flex items-center gap-3 text-xl font-bold text-white">
+              <h3 className="flex items-center gap-3 text-lg sm:text-xl font-bold text-white">
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#4c7dff]/20 text-[#6a93ff]">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
                 </div>
@@ -1385,7 +1383,7 @@ function App() {
               </h3>
             </div>
 
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-4 sm:gap-5">
               {/* Email Card */}
               <div
                 onClick={() => window.open("https://mail.google.com/mail/?view=cm&fs=1&to=alfiansyahcahyow@gmail.com", "_blank", "noopener,noreferrer")}
