@@ -118,7 +118,15 @@ const experiences: Experience[] = [
 ];
 
 
-const education = [
+type EducationItem = {
+  program: string;
+  level: string;
+  school: string;
+  period: string;
+  detailLine: string;
+};
+
+const education: EducationItem[] = [
   {
     program: "Politeknik LP3I Jakarta",
     level: "Diploma III",
@@ -419,6 +427,51 @@ function App() {
       }
     },
     [openProjectDetail],
+  );
+
+  const renderExperienceCard = (job: Experience) => (
+    <div className="w-full md:max-w-md group h-full">
+      <div className="relative h-full float-hover-edu rounded-3xl bg-gradient-to-r from-[#4c7dff] via-[#3a52c9] to-[#1f2c72] p-[1px] shadow-[0_25px_70px_rgba(5,12,40,0.65)] transition hover:shadow-[0_25px_80px_rgba(76,125,255,0.35)]">
+        <div className="flex h-full flex-col rounded-3xl bg-[#0f1a40]/95 p-6 transition-colors duration-300 group-hover:bg-[#131f4f]">
+          <div className="flex flex-col gap-1">
+            <p className="text-lg font-semibold text-white">{job.title}</p>
+            <p className="text-sm text-[#aebdff]">{job.company}</p>
+            <p className="text-sm text-slate-400 md:hidden">{job.period}</p>
+          </div>
+          <p className="mt-4 text-sm leading-relaxed text-slate-100">{job.bullets.join(" ")}</p>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderEducationCard = (item: EducationItem) => (
+    <div className="w-full md:max-w-md group h-full">
+      <div className="relative h-full float-hover-edu rounded-3xl bg-gradient-to-r from-[#4c7dff] via-[#3a52c9] to-[#1f2c72] p-[1px] shadow-[0_25px_70px_rgba(5,12,40,0.65)] transition hover:shadow-[0_25px_80px_rgba(76,125,255,0.35)]">
+        <div className="flex h-full flex-col rounded-3xl bg-[#0f1a40]/95 p-6 transition-colors duration-300 group-hover:bg-[#131f4f]">
+          <div className="flex flex-col gap-1">
+            <p className="text-lg font-semibold text-white">{item.program}</p>
+            <p className="text-sm text-[#aebdff]">{item.level}</p>
+            <p className="text-sm text-[#7f9aff]">{item.school}</p>
+            <p className="text-sm text-slate-400 md:hidden">{item.period}</p>
+          </div>
+          <p className="mt-4 text-sm text-[#d5deff]">{item.detailLine}</p>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderHeroMetricCard = (label: string, value: string | number, caption?: string) => (
+    <div className="relative w-full h-full rounded-3xl bg-gradient-to-r from-[#4c7dff] via-[#3a52c9] to-[#1f2c72] p-[1px] shadow-[0_25px_70px_rgba(4,10,35,0.7)] transition-transform duration-500 hover:-translate-y-1 hover:shadow-[0_25px_80px_rgba(76,125,255,0.2)]">
+      <div className="flex h-full flex-col justify-center gap-1 rounded-3xl bg-[#0f1a40]/95 p-6 transition-colors duration-300">
+        <p className="text-xs font-bold tracking-widest text-[#aebdff] uppercase">{label}</p>
+        <p className="text-3xl font-semibold text-white">
+          {value}
+          {caption ? (
+            <span className="text-xl text-slate-400 font-medium"> {caption}</span>
+          ) : null}
+        </p>
+      </div>
+    </div>
   );
 
   useEffect(() => {
@@ -776,53 +829,53 @@ function App() {
           id="about"
           data-scroll-animate
           data-scroll-variant="slide-right"
-          className="scroll-section mt-14 sm:mt-20 grid gap-8 lg:grid-cols-[1.3fr_0.7fr]"
+          className="scroll-section mt-16 sm:mt-20"
         >
-          {/* Left Column: About Text */}
-          <div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight text-center lg:text-left">
-              About <span className="text-[#7f9aff]">Developer</span>
-            </h2>
-            <div className="mt-6 relative rounded-3xl border border-[#4c7dff]/30 bg-[#0a1029]/60 p-8 sm:p-10 shadow-lg backdrop-blur hover:border-[#4c7dff]/50 transition-colors">
-              <p className="relative z-10 text-base leading-loose text-slate-300 font-medium">
-                I'm <span className="text-white font-bold italic">Alfiansyah Cahyo Wicaksono</span>, a dedicated Fullstack Developer
-                specializing in TypeScript and crafting responsive, 
-                user-centric interfaces with React. I build 
-                robust applications using modern technologies-leveraging 
-                my backend expertise to integrate secure and reliable database layers 
-                seamlessly into my front-end applications. Passionate about continuous learning, 
-                I stay at the forefront of emerging technologies to deliver scalable, 
-                maintainable solutions that exceed expectations.
-              </p>
+          <div className="grid gap-8 lg:grid-cols-[1.3fr_0.7fr]">
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight text-center lg:text-left">
+                About <span className="text-[#7f9aff]">Developer</span>
+              </h2>
+              <div className="mt-6 relative rounded-3xl border border-[#4c7dff]/30 bg-[#0a1029]/60 p-8 sm:p-10 shadow-lg backdrop-blur hover:border-[#4c7dff]/50 transition-colors">
+                <p className="relative z-10 text-base leading-loose text-slate-300 font-medium text-justify">
+                  I'm <span className="text-white font-bold italic">Alfiansyah Cahyo Wicaksono</span>, a dedicated Fullstack Developer
+                  specializing in TypeScript and crafting responsive, 
+                  user-centric interfaces with React. I build 
+                  robust applications using modern technologies-leveraging 
+                  my backend expertise to integrate secure and reliable database layers 
+                  seamlessly into my front-end applications. Passionate about continuous learning, 
+                  I stay at the forefront of emerging technologies to deliver scalable, 
+                  maintainable solutions that exceed expectations.
+                </p>
+              </div>
+            </div>
+
+            <div className="hidden sm:flex flex-col justify-center space-y-5 lg:pl-6">
+              <div>{renderHeroMetricCard("Level", "Junior")}</div>
+              {heroStats.map((stat, index) => (
+                <div key={stat.label}>{renderHeroMetricCard(stat.label, statValues[index], stat.caption)}</div>
+              ))}
             </div>
           </div>
+        </section>
 
-          {/* Right Column: Vertical Stats */}
-          <div className="flex flex-col justify-center space-y-5 lg:pl-6">
-            <div className="relative rounded-3xl bg-gradient-to-r from-[#4c7dff] via-[#3a52c9] to-[#1f2c72] p-[1px] shadow-[0_25px_70px_rgba(4,10,35,0.7)] transition-transform duration-500 hover:-translate-y-1 hover:shadow-[0_25px_80px_rgba(76,125,255,0.2)]">
-              <div className="flex flex-col justify-center gap-1 rounded-3xl bg-[#0f1a40]/95 p-6 h-full transition-colors duration-300">
-                <p className="text-xs font-bold tracking-widest text-[#aebdff] uppercase">
-                  Level
-                </p>
-                <p className="text-2xl font-semibold text-white">
-                  Junior
-                </p>
-              </div>
-            </div>
+        <section
+          data-scroll-animate
+          data-scroll-variant="slide-left"
+          className="scroll-section mt-16 sm:mt-20 sm:hidden"
+        >
+          <div className="scrollbar-hide flex w-full snap-x snap-mandatory overflow-x-auto scroll-smooth gap-4 pb-4 pt-2 pl-4 pr-4">
+            <article className="snap-start w-[260px] min-w-[260px] max-w-[260px] mx-auto flex justify-center">
+              {renderHeroMetricCard("Level", "Junior")}
+            </article>
             {heroStats.map((stat, index) => (
-              <div key={stat.label} className="relative rounded-3xl bg-gradient-to-r from-[#4c7dff] via-[#3a52c9] to-[#1f2c72] p-[1px] shadow-[0_25px_70px_rgba(4,10,35,0.7)] transition-transform duration-500 hover:-translate-y-1 hover:shadow-[0_25px_80px_rgba(76,125,255,0.2)]">
-                <div className="flex flex-col justify-center gap-1 rounded-3xl bg-[#0f1a40]/95 p-6 h-full transition-colors duration-300">
-                  <p className="text-xs font-bold tracking-widest text-[#aebdff] uppercase">
-                    {stat.label}
-                  </p>
-                  <p className="text-3xl font-semibold text-white">
-                    {statValues[index]}
-                    {stat.caption && <span className="text-xl text-slate-400 font-medium"> {stat.caption}</span>}
-                  </p>
-                </div>
-              </div>
+              <article
+                key={`hero-metric-slider-${stat.label}`}
+                className="snap-start w-[260px] min-w-[260px] max-w-[260px] mx-auto flex justify-center"
+              >
+                {renderHeroMetricCard(stat.label, statValues[index], stat.caption)}
+              </article>
             ))}
-          
           </div>
         </section>
 
@@ -830,7 +883,7 @@ function App() {
           id="experience"
           data-scroll-animate
           data-scroll-variant="slide-left"
-          className="scroll-section mt-16 px-4 py-10 sm:p-10"
+          className="scroll-section mt-16 sm:mt-20"
         >
           <div className="sm:hidden mb-6">
             <h2 className="text-3xl font-extrabold text-white text-center">
@@ -844,33 +897,25 @@ function App() {
             </span>
             <span className="hidden h-px w-16 bg-[#6b8dff]/40 sm:inline-block" />
           </h2>
-          <div className="relative mt-8 sm:mt-12">
+            <div className="mt-8 sm:mt-12 sm:hidden">
+            <div className="scrollbar-hide flex w-full snap-x snap-mandatory overflow-x-auto gap-5 pb-4 pt-2 pl-2 pr-4">
+              {experiences.map((job) => (
+                <article
+                  key={`${job.title}-mobile`}
+                  className="snap-start shrink-0 w-[72vw] min-w-[240px] max-w-sm flex"
+                >
+                  {renderExperienceCard(job)}
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative mt-8 sm:mt-12 hidden sm:block">
             <span className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-1 -translate-x-1/2 rounded-full bg-gradient-to-b from-[#4c7dff] via-[#243788]/60 to-transparent md:block" />
             <div className="space-y-10 sm:space-y-14">
               {experiences.map((job, index) => {
                 const alignLeft = index % 2 === 0;
-                const card = (
-                  <div className="w-full md:max-w-md group">
-                    <div className="relative float-hover-edu rounded-3xl bg-gradient-to-r from-[#4c7dff] via-[#3a52c9] to-[#1f2c72] p-[1px] shadow-[0_25px_70px_rgba(5,12,40,0.65)] transition hover:shadow-[0_25px_80px_rgba(76,125,255,0.35)]">
-                      <div className="rounded-3xl bg-[#0f1a40]/95 p-6 transition-colors duration-300 group-hover:bg-[#131f4f]">
-                        <div className="flex flex-col gap-1">
-                          <p className="text-lg font-semibold text-white">
-                            {job.title}
-                          </p>
-                          <p className="text-sm text-[#aebdff]">
-                            {job.company}
-                          </p>
-                          <p className="text-sm text-[#aebdff] md:hidden">
-                            {job.period}
-                          </p>
-                        </div>
-                        <p className="mt-5 text-sm leading-relaxed text-slate-100">
-                          {job.bullets.join(" ")}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                );
+                const card = renderExperienceCard(job);
                 return (
                   <article
                     key={job.title}
@@ -915,7 +960,7 @@ function App() {
           id="education"
           data-scroll-animate
           data-scroll-variant="scale"
-          className="scroll-section mt-12 px-4 py-10 sm:p-10"
+          className="scroll-section mt-16 sm:mt-20"
         >
           <div className="sm:hidden mb-6">
             <h2 className="text-3xl font-extrabold text-white text-center">
@@ -929,36 +974,25 @@ function App() {
             </span>
             <span className="hidden h-px w-16 bg-[#6b8dff]/40 sm:inline-block" />
           </h2>
-          <div className="relative mt-8 sm:mt-12">
+          <div className="mt-8 sm:mt-12 sm:hidden">
+            <div className="scrollbar-hide flex w-full snap-x snap-mandatory overflow-x-auto gap-5 pb-4 pt-2 pl-2 pr-4">
+              {education.map((item) => (
+                <article
+                  key={`${item.program}-mobile`}
+                  className="snap-start shrink-0 w-[72vw] min-w-[240px] max-w-sm flex"
+                >
+                  {renderEducationCard(item)}
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative mt-8 sm:mt-12 hidden sm:block">
             <span className="pointer-events-none absolute left-1/2 top-0 hidden h-full w-1 -translate-x-1/2 rounded-full bg-gradient-to-b from-[#4c7dff] via-[#243788]/60 to-transparent md:block" />
             <div className="space-y-10 sm:space-y-14">
               {education.map((item, index) => {
                 const alignLeft = index % 2 === 0;
-                const card = (
-                  <div className="w-full md:max-w-md group">
-                    <div className="relative float-hover-edu rounded-3xl bg-gradient-to-r from-[#4c7dff] via-[#3a52c9] to-[#1f2c72] p-[1px] shadow-[0_25px_70px_rgba(5,12,40,0.65)] transition hover:shadow-[0_25px_80px_rgba(76,125,255,0.35)]">
-                      <div className="rounded-3xl bg-[#0f1a40]/95 p-6 transition-colors duration-300 group-hover:bg-[#131f4f]">
-                        <div className="flex flex-col gap-1">
-                          <p className="text-lg font-semibold text-white">
-                            {item.program}
-                          </p>
-                          <p className="text-sm text-[#aebdff]">
-                            {item.level}
-                          </p>
-                          <p className="text-sm text-[#7f9aff]">
-                            {item.school}
-                          </p>
-                          <p className="text-sm text-[#aebdff] md:hidden">
-                            {item.period}
-                          </p>
-                        </div>
-                        <p className="text-sm text-[#d5deff]">
-                          {item.detailLine}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                );
+                const card = renderEducationCard(item);
                 return (
                   <article
                     key={item.program}
@@ -1000,7 +1034,7 @@ function App() {
         <section
           data-scroll-animate
           data-scroll-variant="lift"
-          className="scroll-section mt-12 sm:mt-16 space-y-10 overflow-hidden"
+          className="scroll-section mt-16 sm:mt-20 space-y-10 overflow-hidden"
         >
           <div className="sm:hidden mb-6">
             <h2 className="text-3xl font-extrabold text-white text-center">
@@ -1078,7 +1112,7 @@ function App() {
           id="projects"
           data-scroll-animate
           data-scroll-variant="rotate"
-          className="scroll-section mt-12 sm:mt-16 space-y-10"
+          className="scroll-section mt-16 sm:mt-20 space-y-10"
         >
           <div className="sm:hidden mb-6">
             <h2 className="text-3xl font-extrabold text-white text-center">
@@ -1116,7 +1150,7 @@ function App() {
             <div className="relative flex-1 min-w-0">
               <div
                 ref={projectTrackRef}
-                className="scrollbar-hide flex w-full snap-x snap-mandatory scroll-smooth overflow-x-auto gap-6 lg:gap-8 pb-4 pt-4"
+                className="scrollbar-hide flex w-full snap-x snap-mandatory scroll-smooth overflow-x-auto gap-6 lg:gap-8 pb-4 pt-4 pl-2 pr-8"
               >
                 {projects.map((project) => (
                   <article
@@ -1126,7 +1160,7 @@ function App() {
                     aria-label={`View details about ${project.title}`}
                     onClick={() => openProjectDetail(project)}
                     onKeyDown={handleProjectCardKeyDown(project)}
-                    className="group float-hover-edu snap-start shrink-0 w-[85vw] sm:w-[400px] lg:w-[480px] flex flex-col rounded-3xl border border-[#2f4184]/50 bg-[#0c1538]/80 text-slate-100 shadow overflow-hidden transition hover:border-[#4c7dff]/70 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4c7dff]"
+                    className="group float-hover-edu snap-start shrink-0 w-[82vw] max-w-[360px] sm:w-[400px] lg:w-[480px] flex flex-col rounded-3xl border border-[#2f4184]/50 bg-[#0c1538]/80 text-slate-100 shadow overflow-hidden transition hover:border-[#4c7dff]/70 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4c7dff]"
                   >
                     <div
                       className={`relative w-full shrink-0 overflow-hidden rounded-t-xl bg-gradient-to-br ${project.previewGradient ?? ""}`}
@@ -1291,7 +1325,7 @@ function App() {
           id="contact"
           data-scroll-animate
           data-scroll-variant="slide-right delay"
-          className="scroll-section mt-16 px-4 py-10 sm:p-10"
+          className="scroll-section mt-16 sm:mt-20"
         >
           <div className="sm:hidden mb-6">
             <h2 className="text-3xl font-extrabold text-white text-center">
@@ -1451,7 +1485,7 @@ function App() {
               role="dialog"
               aria-modal="true"
               aria-label={`${selectedProject.title} details`}
-              className="relative z-10 w-full max-w-4xl rounded-3xl border border-[#4559c1]/40 bg-[#050b1f]/95 shadow-[0_25px_120px_rgba(0,0,0,0.75)]"
+              className="relative z-10 w-full max-w-4xl rounded-3xl border border-[#8ea7ff]/70 sm:border-[#4559c1]/40 bg-[#050b1f]/95 shadow-[0_25px_120px_rgba(0,0,0,0.75)]"
             >
                 <div className="space-y-6 p-6 md:p-10 max-h-[90vh] overflow-y-auto">
                   <div className="mb-2 flex justify-start">
@@ -1459,7 +1493,7 @@ function App() {
                       type="button"
                       onClick={closeProjectDetail}
                       aria-label="Close project details"
-                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white transition hover:bg-white/25"
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#8ea7ff]/60 bg-[#0d1f4f]/60 text-[#dbe3ff] transition hover:bg-[#162a66]"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -1538,7 +1572,7 @@ function App() {
                   href={selectedProject.sourceLink ?? selectedProject.link}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-[#4c7dff]/40 bg-[#4c7dff]/15 px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#6a93ff]/25"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-[#8ea7ff]/60 bg-[#132550]/80 px-4 py-3 text-sm font-semibold text-[#e6ecff] transition hover:bg-[#1c3270]"
                 >
                   Source Code
                   <svg
