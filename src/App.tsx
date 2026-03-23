@@ -1472,7 +1472,7 @@ function App() {
         </section>
 
         <footer className="mt-16 border-t border-[#2f3f86]/40 pt-6 text-center text-sm text-slate-400">
-          © {new Date().getFullYear()} Alfiansyah Cahyo Wicaksono.  All rights reserved.
+          © {new Date().getFullYear()} Devwithfin.  All rights reserved.
         </footer>
 
         {selectedProject && (
