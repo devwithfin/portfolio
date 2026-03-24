@@ -87,7 +87,7 @@ const experiences: Experience[] = [
   {
     title: "Fullstack Web Developer",
     company: "PT. Transcosmos Indonesia",
-    period: "September 2025 - March 2025",
+    period: "September 2025 - March 2026",
     bullets: [
       "Developed Employee Management System features for internal operations such as request workflows and security access approvals",
       "Designed business logic, authentication, and role management aligned with the organization hierarchy",
@@ -97,7 +97,7 @@ const experiences: Experience[] = [
   {
     title: "Frontend Web Developer",
     company: "PT. Kahfi Kita Indonesia",
-    period: "March 2025 - June 2025",
+    period: "May 2025 - June 2025",
     bullets: [
       "Built the Kahfi Education web interface covering user authentication, student dashboard, and realtime profile updates",
       "Implemented responsive layouts and intuitive navigation across devices",
