@@ -97,7 +97,7 @@ const experiences: Experience[] = [
   {
     title: "Frontend Web Developer",
     company: "PT. Kahfi Kita Indonesia",
-    period: "May 2025 - June 2025",
+    period: "May 2025 - July 2025",
     bullets: [
       "Built the Kahfi Education web interface covering user authentication, student dashboard, and realtime profile updates",
       "Implemented responsive layouts and intuitive navigation across devices",
