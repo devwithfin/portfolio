@@ -30,54 +30,54 @@ type HeroCardEffect = {
 
 const projects: Project[] = [
   {
-    title: "Library Management System",
+    title: "Perpusrekayasatu",
     description:
       "Built a lightweight Library Management System using CodeIgniter and MySQL to manage book catalogs, member records, and borrowing activities. Supports role-based access, cover uploads, loan tracking, and PDF/Excel reporting for inventory and circulation.",
     stack: ["CodeIgniter", "MySQL", "Bootstrap"],
     link: "#",
-    previewGradient: "from-[#1c3f8c] via-[#1a2b63] to-[#101638]",
+    previewGradient: "from-[#1e4568] via-[#1a3860] to-[#142848]",
     previewImage: "projects/library-management-system.png",
     sourceLink: "https://github.com/devwithfin/aplikasiperpustatakaan",
     previewVideo: "/video/demo.mp4",
   },
   {
-    title: "Learning Management System",
+    title: "Kahfi Education",
     description:
       "Built a full-stack Learning Management System using React, Express, and MySQL to handle student onboarding, course access, and role-based portals for students, teachers, and admins. Includes secure registration, login, email verification, and password reset flows ahead of features like catalogs, dashboards, and assignments.",
     stack: ["React", "Express.js", "Node.js", "MySQL", "Material UI"],
     link: "#",
-    previewGradient: "from-[#1b357a] via-[#18255a] to-[#0d1235]",
+    previewGradient: "from-[#1c4270] via-[#183658] to-[#122540]",
     previewImage: "projects/learning-management-system.png",
     previewVideo: "/video/demo.mp4",
   },
   {
-    title: "HRIS & Payroll",
+    title: "HR Pay",
     description:
       "Built a full-stack HRIS platform using React, Express, and MySQL to manage employee records, attendance, leave, overtime, and payroll. Supports role-based access for HR, finance, and employees while automating salary components overtime, allowances, deductions, taxes, BPJS and generating digital payslips.",
     stack: ["React", "Express.js", "Node.js", "Tailwind CSS"],
     link: "#",
-    previewGradient: "from-[#203c88] via-[#1a2c64] to-[#0f143a]",
+    previewGradient: "from-[#224878] via-[#1c3a68] to-[#142c50]",
     previewImage: "projects/hris-payroll.png",
     sourceLink: "https://github.com/devwithfin/payroll",
     previewVideo: "/video/demo.mp4",
   },
   {
-    title: "Employee Management System",
+    title: "Transcosmos EMS",
     description:
       "Built a full-stack Employee Management System using Laravel and MySQL to centralize employee data, service requests, and approval-based workflows-requisitions, business trips, purchases, claims, and security incidents. Supports role-based access, configurable approval chains, facility/asset tracking, and audit logging for HR, finance, facilities, and employees.",
     stack: ["Laravel", "Node.js", "PostgreSQL", "Bootstrap"],
     link: "#",
-    previewGradient: "from-[#1a3676] via-[#142350] to-[#0d1333]",
+    previewGradient: "from-[#1b4070] via-[#163258] to-[#102445]",
     previewImage: "projects/employee-management-system.png",
     previewVideo: "/video/demo.mp4",
   },
   {
-    title: "Customer Relationship Management",
+    title: "Licentra",
     description:
       "Developed a CRM platform with React and NestJS to track deals, automate follow-ups, and share context across sales and support. Includes pipeline stages, contact history, reminders, and PostgreSQL-backed activity feeds for reliable collaboration.",
     stack: ["React", "NestJS", "Node.js", "PostgreSQL"],
     link: "#",
-    previewGradient: "from-[#263a8f] via-[#1b2863] to-[#10163d]",
+    previewGradient: "from-[#284888] via-[#1c3870] to-[#142850]",
     previewImage: "projects/customer-relationship-management.png",
     previewVideo: "/video/demo.mp4",
   },
@@ -102,6 +102,16 @@ const experiences: Experience[] = [
       "Built the Kahfi Education web interface covering user authentication, student dashboard, and realtime profile updates",
       "Implemented responsive layouts and intuitive navigation across devices",
       "Partnered with backend engineers on API integration for user management, learning programs, and payment status",
+    ],
+  },
+  {
+    title: "IT Trainer",
+    company: "CV. DM Techno",
+    period: "April 2022 - January 2023",
+    bullets: [
+      "Taught basic programming fundamentals including HTML, CSS, and JavaScript to beginners",
+      "Created and delivered lesson materials for coding bootcamps and training sessions",
+      "Mentored students on web development basics and guided them through hands-on coding projects",
     ],
   },
   {
@@ -148,14 +158,16 @@ const skillLogos: Record<string, string> = {
   JavaScript: "https://cdn.simpleicons.org/javascript/F7DF1E",
   TypeScript: "https://cdn.simpleicons.org/typescript/3178C6",
   Python: "https://cdn.simpleicons.org/python/3776AB",
+  "C++": "https://cdn.simpleicons.org/c++/00599C",
+  "C#": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
   Bootstrap: "https://cdn.simpleicons.org/bootstrap/7952B3",
   "Tailwind CSS": "https://cdn.simpleicons.org/tailwindcss/38BDF8",
   React: "https://cdn.simpleicons.org/react/61DAFB",
   CodeIgniter: "https://cdn.simpleicons.org/codeigniter/EF4223",
   Laravel: "https://cdn.simpleicons.org/laravel/FF2D20",
-  "Node.js": "https://cdn.simpleicons.org/nodedotjs/5FA04E",
-  "Express.js": "https://cdn.simpleicons.org/express/FFFFFF",
-  NestJS: "https://cdn.simpleicons.org/nestjs/E0234E",
+  "Node JS": "https://cdn.simpleicons.org/nodedotjs/5FA04E",
+  "Express JS": "https://cdn.simpleicons.org/express/FFFFFF",
+  "Nest JS": "https://cdn.simpleicons.org/nestjs/E0234E",
   MySQL: "https://cdn.simpleicons.org/mysql/4479A1",
   "Microsoft SQL Server": "/icons/mssql.svg",
   PostgreSQL: "https://cdn.simpleicons.org/postgresql/4169E1",
@@ -163,6 +175,7 @@ const skillLogos: Record<string, string> = {
   Postman: "https://cdn.simpleicons.org/postman/FF6C37",
   Docker: "https://cdn.simpleicons.org/docker/2496ED",
   Figma: "https://cdn.simpleicons.org/figma/F24E1E",
+  WordPress: "https://cdn.simpleicons.org/wordpress/21759B",
 };
 
 const techRow1 = [
@@ -170,16 +183,18 @@ const techRow1 = [
   "JavaScript",
   "TypeScript",
   "Python",
+  "C++",
+  "C#",
   "Bootstrap",
   "Tailwind CSS",
   "React",
   "CodeIgniter",
   "Laravel",
-  "Node.js",
+  "Node JS",
 ];
 const techRow2 = [
-  "Express.js",
-  "NestJS",
+  "Express JS",
+  "Nest JS",
   "MySQL",
   "Microsoft SQL Server",
   "PostgreSQL",
@@ -187,6 +202,7 @@ const techRow2 = [
   "Postman",
   "Docker",
   "Figma",
+  "WordPress",
 ];
 
 const techLabels: Record<string, string> = {
@@ -194,14 +210,16 @@ const techLabels: Record<string, string> = {
   JavaScript: "Language",
   TypeScript: "Language",
   Python: "Language",
+  "C++": "Language",
+  "C#": "Language",
   Bootstrap: "Frontend",
   "Tailwind CSS": "Frontend",
   React: "Frontend",
   CodeIgniter: "Backend",
   Laravel: "Backend",
-  "Node.js": "Backend",
-  "Express.js": "Backend",
-  NestJS: "Backend",
+  "Node JS": "Backend",
+  "Express JS": "Backend",
+  "Nest JS": "Backend",
   MySQL: "Database",
   "Microsoft SQL Server": "Database",
   PostgreSQL: "Database",
@@ -209,6 +227,7 @@ const techLabels: Record<string, string> = {
   Postman: "Tools",
   Docker: "Tools",
   Figma: "Tools",
+  WordPress: "Tools",
 };
 
 const heroStats = [
@@ -645,7 +664,7 @@ function App() {
   }, [isMobile]);
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-gradient-to-br from-[#03050f] via-[#08112a] via-[#101e44] to-[#152270] text-slate-100 antialiased font-sans selection:bg-[#4c7dff]/40">
+    <div className="min-h-screen overflow-x-hidden bg-gradient-to-br from-[#0a1525] via-[#152035] via-[#1e2a48] to-[#253560] text-slate-100 antialiased font-sans selection:bg-[#4c7dff]/40">
       {/* Background Glows */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#1f2c6d]/30 blur-[140px] rounded-full" />
@@ -808,7 +827,7 @@ function App() {
                   }}
                 >
                   {/* Editor Header */}
-                  <div className="h-12 bg-[#171313] flex items-center px-6 border-b border-white/5 justify-between">
+                  <div className="h-12 bg-[#2a4d8a] flex items-center px-6 border-b border-white/5 justify-between">
                     <div className="flex gap-2">
                       <div className="w-3 h-3 rounded-full bg-[#4c7dff]/60" />
                       <div className="w-3 h-3 rounded-full bg-[#6b92ff]/50" />
@@ -1113,7 +1132,7 @@ function App() {
                 {[...techRow1, ...techRow1].map((skill, idx) => (
                   <div
                     key={`${skill}-${idx}`}
-                    className="relative w-64 shrink-0 rounded-2xl border border-[#2f3f86]/50 bg-[#0c1538]/80 px-5 py-4 backdrop-blur shadow transition hover:border-[#4c7dff]/70"
+                    className="relative w-64 shrink-0 rounded-2xl border border-[#4c7dff] bg-[#0c1538]/80 px-5 py-4 backdrop-blur shadow transition hover:border-[#6b93ff] hover:shadow-[0_15px_40px_rgba(76,125,255,0.3)]"
                   >
                     <div className="flex h-full items-center gap-4">
                       <img
@@ -1141,7 +1160,7 @@ function App() {
                 {[...techRow2, ...techRow2].map((skill, idx) => (
                   <div
                     key={`${skill}-${idx}`}
-                    className="relative w-64 shrink-0 rounded-2xl border border-[#2f3f86]/50 bg-[#0c1538]/80 px-5 py-4 backdrop-blur shadow transition hover:border-[#4c7dff]/70"
+                    className="relative w-64 shrink-0 rounded-2xl border border-[#4c7dff] bg-[#0c1538]/80 px-5 py-4 backdrop-blur shadow transition hover:border-[#6b93ff] hover:shadow-[0_15px_40px_rgba(76,125,255,0.3)]"
                   >
                     <div className="flex h-full items-center gap-4">
                       <img
